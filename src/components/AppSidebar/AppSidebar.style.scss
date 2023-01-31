@@ -1,0 +1,34 @@
+@import 'styles/colors.style.scss';
+
+.app_sidebar {
+    width: 14%;
+    height: 100vh;
+    min-width: 10rem;
+    background-color: $light-black;
+}
+
+.app_sidebar__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid $dark-border;
+    border-top: none;
+    padding: 0.4em;
+    padding-left: 2rem;
+    color: $light-gray;
+
+    &-title {
+        font-size: calc(8px + 6 * (100vw / 1440));
+    }
+
+    &-abbreviation {
+        font-size: calc(4px + 6 * (100vw / 1440));
+    }
+}
+
+.app_sidebar__content {
+    width: 100%;
+    height: 100%;
+    border: 1px solid $dark-border;
+    border-top: none;
+}

@@ -1,0 +1,20 @@
+@import 'styles/colors.style.scss';
+
+.app_sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    padding-left: 2rem;
+    transition: 0.2s all;
+    cursor: pointer;
+
+    &_title {
+        font-size: calc(8px + 6 * (100vw / 1440));
+        color: white;
+    }
+
+    &_selected {
+        background-color: $light-gray;
+    }
+}
