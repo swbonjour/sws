@@ -9,7 +9,7 @@ export const ArrowSvg = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_3_4487)">
+      <g clipPath="url(#clip0_3_4487)">
         <path
           d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z"
           fill="white"

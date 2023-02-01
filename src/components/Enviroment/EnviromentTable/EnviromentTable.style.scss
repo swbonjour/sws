@@ -1,0 +1,29 @@
+@import 'styles/colors.style.scss';
+
+.enviroment_table {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    padding-top: 0;
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 2rem;
+        padding-right: 4rem;
+        height: 3rem;
+        border-bottom: 1px solid $dark-border;
+        color: $light-gray;
+        font-size: calc(6px + 6 * (100vw / 1440));
+
+        &-titles {
+            display: flex;
+            gap: 4rem;
+        }
+
+        &-attributes {
+            display: flex;
+            gap: 6rem;
+        }
+    }
+}
