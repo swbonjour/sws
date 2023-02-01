@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { EnviromentTableItem } from './EnviromentTableItem/EnviromentTableItem';
+
 import './EnviromentTable.style.scss';
 
 export const EnviromentTable = () => {
@@ -17,6 +19,8 @@ export const EnviromentTable = () => {
                 <p>Сметная прибыль</p>
             </div>
         </header>
+
+        <EnviromentTableItem></EnviromentTableItem>
     </div>
   )
 }
