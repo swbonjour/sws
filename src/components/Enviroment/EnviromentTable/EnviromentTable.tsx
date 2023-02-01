@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 
 import { EnviromentTableItem } from './EnviromentTableItem/EnviromentTableItem';
 
 import './EnviromentTable.style.scss';
 import { getAllStrings } from 'utils/ApiIntegration.utils';
+import { setStringsData } from 'store/slices/stringsSlice';
 import { StringInterface } from 'types/string.type';
 
 export const EnviromentTable = () => {
-  const [enviromentItems, setEnviromentItems] = useState<StringInterface[]>();
+  const strings = useSelector((state: any) => state.stringReducer.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
       const response = await getAllStrings();
-      setEnviromentItems(response);
+      dispatch(setStringsData(response));
     }
     getData();
   }, [])
@@ -32,9 +35,11 @@ export const EnviromentTable = () => {
             </div>
         </header>
 
-        {enviromentItems?.map((item) => (
+        {strings?.length === 0 ? 
+        <EnviromentTableItem rowName={''} mainCosts={0} equipmentCosts={0} overheads={0} estimatedProfit={0} empty={true}></EnviromentTableItem> :
+        strings?.map((item: StringInterface) => (
           <EnviromentTableItem rowName={item.rowName} mainCosts={item.mainCosts} equipmentCosts={item.equipmentCosts} overheads={item.overheads} estimatedProfit={item.estimatedProfit} key={item.id}></EnviromentTableItem>
-        ))}
+          ))}
     </div>
   )
 }

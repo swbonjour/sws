@@ -25,4 +25,14 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
+
+    input {
+        background-color: $dark-black;
+        border: 1px solid $dark-border;
+        border-radius: 6px;
+        color: $light-gray;
+        outline: none;
+        padding: 0.4rem;
+        width: 80%;
+    }
 }
