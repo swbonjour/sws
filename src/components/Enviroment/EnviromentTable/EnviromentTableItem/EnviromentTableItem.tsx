@@ -4,18 +4,26 @@ import { EnviromentItemSvg } from 'assets/EnviromentItemSvg'
 
 import './EnviromentTableItem.style.scss';
 
-export const EnviromentTableItem = () => {
+interface EnviromentTableItemProps {
+  rowName: string,
+  mainCosts: number,
+  equipmentCosts: number,
+  overheads: number,
+  estimatedProfit: number
+}
+
+export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overheads, estimatedProfit }: EnviromentTableItemProps) => {
   return (
     <div className='enviroment_item'>
         <div className='enviroment_item-titles'>
             <EnviromentItemSvg></EnviromentItemSvg>
-            <p>Южная строительная площадка</p>
+            <p>{ rowName }</p>
         </div>
         <div className="enviroment_item-attributes">
-            <p>20 348</p>
-            <p>1 750</p>
-            <p>108,07</p>
-            <p>1 209 122,5</p>
+            <p>{ mainCosts }</p>
+            <p>{ equipmentCosts }</p>
+            <p>{ overheads }</p>
+            <p>{ estimatedProfit }</p>
         </div>
     </div>
   )
