@@ -1,0 +1,53 @@
+@import 'styles/colors.style.scss';
+
+.enviroment_item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 2rem;
+    padding-right: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: $light-gray;
+    font-size: calc(6px + 6 * (100vw / 1440));
+    border-bottom: 1px solid $dark-border;
+
+    &-titles {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+        &_hover {
+            background-color: $light-black;
+            width: fit-content;
+            border-radius: 6px;
+            padding: 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        &_hover :nth-child(1) {
+            cursor: pointer;
+        }
+    }
+
+    &-titles :nth-child(2) {
+        grid-column-start: 2;
+        grid-column-end: 4;
+    }
+
+    &-attributes {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    input {
+        background-color: $dark-black;
+        border: 1px solid $dark-border;
+        border-radius: 6px;
+        color: $light-gray;
+        outline: none;
+        padding: 0.4rem;
+        width: 80%;
+    }
+}
