@@ -33,13 +33,13 @@ export const EnviromentTableItemEmpty = () => {
       <div className='enviroment_item'>
           <div className='enviroment_item-titles'>
               <EnviromentItemSvg></EnviromentItemSvg>
-              <input type="text" value={rowNameInput} onInput={(e) => {const target = e.target as HTMLInputElement; setRowNameInput(target.value)}}/>
+              <input type="text" value={rowNameInput} onKeyDown={handleCreateString} onInput={(e) => {const target = e.target as HTMLInputElement; setRowNameInput(target.value)}}/>
           </div>
           <div className="enviroment_item-attributes">
-              <input type="text" value={mainCostsInput} onInput={(e) => {const target = e.target as HTMLInputElement; setMainCostsInput(target.value)}}/>
-              <input type="text" value={equipmentCostsInput} onInput={(e) => {const target = e.target as HTMLInputElement; setEquipmentCostsInput(target.value)}}/>
+              <input type="text" value={mainCostsInput} onKeyDown={handleCreateString} onInput={(e) => {const target = e.target as HTMLInputElement; setMainCostsInput(target.value)}}/>
+              <input type="text" value={equipmentCostsInput} onKeyDown={handleCreateString} onInput={(e) => {const target = e.target as HTMLInputElement; setEquipmentCostsInput(target.value)}}/>
               <input type="text" value={overheadsInput} onInput={(e) => {const target = e.target as HTMLInputElement; setOverheadsInput(target.value)}} onKeyDown={handleCreateString}/>
-              <input type="text" value={estimatedProfitInput} onInput={(e) => {const target = e.target as HTMLInputElement; setEstimatedProfitInput(target.value)}}/>
+              <input type="text" value={estimatedProfitInput} onKeyDown={handleCreateString} onInput={(e) => {const target = e.target as HTMLInputElement; setEstimatedProfitInput(target.value)}}/>
           </div>
       </div>
     )

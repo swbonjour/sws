@@ -65,13 +65,13 @@ export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overhe
                 <div onClick={handleCreateNewItem}><EnviromentItemSvg></EnviromentItemSvg></div>
                 <div onClick={handleDeleteString} style={{paddingTop: '0.2rem'}}><DeleteBucketSvg></DeleteBucketSvg></div>
               </div>}
-              {(changeItem && <input type='text' value={rowNameInput} onInput={(e) => {const target = e.target as HTMLInputElement; setRowNameInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ rowNameInput }</p>}
+              {(changeItem && <input type='text' value={rowNameInput} onKeyDown={handleChangeItem} onInput={(e) => {const target = e.target as HTMLInputElement; setRowNameInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ rowNameInput }</p>}
           </div>
           <div className="enviroment_item-attributes">
-              {(changeItem && <input type='text' value={mainCostsInput} onInput={(e) => {const target = e.target as HTMLInputElement; setMainCostsInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ mainCostsInput }</p>}
-              {(changeItem && <input type='text' value={equipmentCostsInput} onInput={(e) => {const target = e.target as HTMLInputElement; setEquipmentCostsInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ equipmentCostsInput }</p>}
+              {(changeItem && <input type='text' value={mainCostsInput} onKeyDown={handleChangeItem} onInput={(e) => {const target = e.target as HTMLInputElement; setMainCostsInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ mainCostsInput }</p>}
+              {(changeItem && <input type='text' value={equipmentCostsInput} onKeyDown={handleChangeItem} onInput={(e) => {const target = e.target as HTMLInputElement; setEquipmentCostsInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ equipmentCostsInput }</p>}
               {(changeItem && <input type='text' value={overheadsInput} onKeyDown={handleChangeItem} onInput={(e) => {const target = e.target as HTMLInputElement; setOverheadsInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ overheadsInput }</p>}
-              {(changeItem && <input type='text' value={estimatedProfitInput} onInput={(e) => {const target = e.target as HTMLInputElement; setEstimatedProfitInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ estimatedProfitInput }</p>}
+              {(changeItem && <input type='text' value={estimatedProfitInput} onKeyDown={handleChangeItem} onInput={(e) => {const target = e.target as HTMLInputElement; setEstimatedProfitInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ estimatedProfitInput }</p>}
           </div>
       </div>
 
