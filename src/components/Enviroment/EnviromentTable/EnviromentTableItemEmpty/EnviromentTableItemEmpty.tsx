@@ -6,6 +6,7 @@ import { EnviromentItemSvg } from 'assets/EnviromentItemSvg'
 import './EnviromentTableItemEmpty.style.scss';
 import { createString } from 'utils/ApiIntegration.utils';
 import { setStringsData } from 'store/slices/stringsSlice';
+import { setItemCreationValue } from 'store/slices/itemCreationSlice';
 
 export const EnviromentTableItemEmpty = () => {
   const [rowNameInput, setRowNameInput] = useState('');
@@ -21,7 +22,9 @@ export const EnviromentTableItemEmpty = () => {
     if(e.key === 'Enter') {
       if(rowNameInput !== '' && mainCostsInput !== '' && equipmentCostsInput !== '' && overheadsInput !== '' && estimatedProfitInput !== '') {
         const data = await createString(rowNameInput, Number(mainCostsInput), Number(equipmentCostsInput), Number(overheadsInput), Number(estimatedProfitInput), null);
-        dispatch(setStringsData([data.current, ...strings]))
+        dispatch(setStringsData([...strings, data.current]))
+        //@ts-ignore
+        dispatch(setItemCreationValue(0))
         }
         }
     }

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 
 import { EnviromentTableItem } from './EnviromentTableItem/EnviromentTableItem';
+import { EnviromentTableItemEmpty } from './EnviromentTableItemEmpty/EnviromentTableItemEmpty';
 
 import './EnviromentTable.style.scss';
 import { getAllStrings } from 'utils/ApiIntegration.utils';
@@ -38,7 +39,7 @@ export const EnviromentTable = () => {
         </header>
 
         {strings?.length === 0 ? 
-        <EnviromentTableItem rowName={''} mainCosts={0} equipmentCosts={0} overheads={0} estimatedProfit={0} empty={true} id={0}></EnviromentTableItem> :
+        <EnviromentTableItemEmpty></EnviromentTableItemEmpty> :
         strings?.map((item: StringInterface) => (
           <EnviromentTableItem rowName={item.rowName} mainCosts={item.mainCosts} equipmentCosts={item.equipmentCosts} overheads={item.overheads} estimatedProfit={item.estimatedProfit} key={item.id} id={item.id}></EnviromentTableItem>
           ))}
