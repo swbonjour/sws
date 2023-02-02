@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { EnviromentItemSvg } from 'assets/EnviromentItemSvg'
+import { DeleteBucketSvg } from 'assets/DeleteBucketSvg';
 
 import './EnviromentTableItem.style.scss';
 import { createString } from 'utils/ApiIntegration.utils';
-import { setStringsData } from 'store/slices/stringsSlice';
+import { deleteString } from 'utils/ApiIntegration.utils';
+import { setStringsData, deleteStringData } from 'store/slices/stringsSlice';
 
 interface EnviromentTableItemProps {
   rowName: string,
@@ -14,14 +16,19 @@ interface EnviromentTableItemProps {
   overheads: number,
   estimatedProfit: number,
   empty?: boolean,
+  id?: number,
 }
 
-export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overheads, estimatedProfit, empty }: EnviromentTableItemProps) => {
+export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overheads, estimatedProfit, empty, id }: EnviromentTableItemProps) => {
   const [rowNameInput, setRowNameInput] = useState('');
   const [mainCostsInput, setMainCostsInput] = useState('');
   const [equipmentCostsInput, setEquipmentCostsInput] = useState('');
   const [overheadsInput, setOverheadsInput] = useState('');
   const [estimatedProfitInput, setEstimatedProfitInput] = useState('');
+
+  const [hoverDelete, setHoverDelete] = useState(false);
+
+  console.log(hoverDelete);
 
   const strings = useSelector((state: any) => state.stringReducer.value)
   const dispatch = useDispatch();
@@ -35,11 +42,20 @@ export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overhe
     }
   }
 
+  const handleDeleteString = async (e: React.MouseEvent<HTMLDivElement>) => {
+    deleteString(id);
+    dispatch(deleteStringData(id))
+  }
+
   if(!empty) {
     return (
       <div className='enviroment_item'>
           <div className='enviroment_item-titles'>
-              <EnviromentItemSvg></EnviromentItemSvg>
+              {!hoverDelete && <div onMouseEnter={() => {setHoverDelete(true)}}><EnviromentItemSvg></EnviromentItemSvg></div>}
+              {hoverDelete && <div className="enviroment_item-titles_hover" onMouseLeave={() => {setHoverDelete(false)}}>
+                <EnviromentItemSvg></EnviromentItemSvg>
+                <div onClick={handleDeleteString}><DeleteBucketSvg></DeleteBucketSvg></div>
+              </div>}
               <p>{ rowName }</p>
           </div>
           <div className="enviroment_item-attributes">

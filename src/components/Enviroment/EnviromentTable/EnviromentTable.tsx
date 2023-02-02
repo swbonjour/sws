@@ -20,6 +20,8 @@ export const EnviromentTable = () => {
     getData();
   }, [])
 
+  console.log(strings);
+
   return (
     <div className='enviroment_table'>
         <header className='enviroment_table__header'>
@@ -36,9 +38,9 @@ export const EnviromentTable = () => {
         </header>
 
         {strings?.length === 0 ? 
-        <EnviromentTableItem rowName={''} mainCosts={0} equipmentCosts={0} overheads={0} estimatedProfit={0} empty={true}></EnviromentTableItem> :
+        <EnviromentTableItem rowName={''} mainCosts={0} equipmentCosts={0} overheads={0} estimatedProfit={0} empty={true} id={0}></EnviromentTableItem> :
         strings?.map((item: StringInterface) => (
-          <EnviromentTableItem rowName={item.rowName} mainCosts={item.mainCosts} equipmentCosts={item.equipmentCosts} overheads={item.overheads} estimatedProfit={item.estimatedProfit} key={item.id}></EnviromentTableItem>
+          <EnviromentTableItem rowName={item.rowName} mainCosts={item.mainCosts} equipmentCosts={item.equipmentCosts} overheads={item.overheads} estimatedProfit={item.estimatedProfit} key={item.id} id={item.id}></EnviromentTableItem>
           ))}
     </div>
   )

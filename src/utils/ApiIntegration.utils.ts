@@ -43,3 +43,15 @@ export async function createString(rowName: string, mainCosts: number, equipment
     return response;
 }
 
+export async function deleteString(itemID: number | undefined) {
+    const deleteStringUrl = `/v1/outlay-rows/entity/${eID}/row/${itemID}/delete`
+
+    let response: StringCreationInterface | {} = {}
+    await axios.delete(`${APIUrl}/${deleteStringUrl}`)
+        .then((res) => {
+            response = res.data;
+        })
+
+    return response;
+}
+
