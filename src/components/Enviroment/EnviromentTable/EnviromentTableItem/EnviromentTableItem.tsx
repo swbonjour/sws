@@ -5,7 +5,7 @@ import { EnviromentItemSvg } from 'assets/EnviromentItemSvg'
 import { DeleteBucketSvg } from 'assets/DeleteBucketSvg';
 
 import './EnviromentTableItem.style.scss';
-import { deleteString } from 'utils/ApiIntegration.utils';
+import { changeString, deleteString } from 'utils/ApiIntegration.utils';
 import { deleteStringData } from 'store/slices/stringsSlice';
 import { setItemCreationValue } from 'store/slices/itemCreationSlice';
 
@@ -37,7 +37,24 @@ export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overhe
     dispatch(setItemCreationValue(id));
   }
 
-  console.log(id, itemCreationValue);
+  const [changeItem, setChangeItem] = useState(false)
+
+  const [rowNameInput, setRowNameInput] = useState(rowName);
+  const [mainCostsInput, setMainCostsInput] = useState(`${mainCosts}`);
+  const [equipmentCostsInput, setEquipmentCostsInput] = useState(`${equipmentCosts}`);
+  const [overheadsInput, setOverheadsInput] = useState(`${overheads}`);
+  const [estimatedProfitInput, setEstimatedProfitInput] = useState(`${estimatedProfit}`);
+
+  const handleChangeItem = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'Enter') {
+      if(rowNameInput !== rowName || mainCostsInput !== String(mainCosts) || equipmentCostsInput !== String(equipmentCosts) || overheadsInput !== String(overheads) || estimatedProfitInput !== String(estimatedProfit)) {
+        const data = await changeString(id, rowNameInput, Number(mainCostsInput), Number(equipmentCostsInput), Number(overheadsInput), Number(estimatedProfitInput))
+        setChangeItem(false);
+      }
+    }
+  }
+
+  console.log(rowNameInput);
   
   return (
     <div>
@@ -48,13 +65,13 @@ export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overhe
                 <div onClick={handleCreateNewItem}><EnviromentItemSvg></EnviromentItemSvg></div>
                 <div onClick={handleDeleteString} style={{paddingTop: '0.2rem'}}><DeleteBucketSvg></DeleteBucketSvg></div>
               </div>}
-              <p>{ rowName }</p>
+              {(changeItem && <input type='text' value={rowNameInput} onInput={(e) => {const target = e.target as HTMLInputElement; setRowNameInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ rowNameInput }</p>}
           </div>
           <div className="enviroment_item-attributes">
-              <p>{ mainCosts }</p>
-              <p>{ equipmentCosts }</p>
-              <p>{ overheads }</p>
-              <p>{ estimatedProfit }</p>
+              {(changeItem && <input type='text' value={mainCostsInput} onInput={(e) => {const target = e.target as HTMLInputElement; setMainCostsInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ mainCostsInput }</p>}
+              {(changeItem && <input type='text' value={equipmentCostsInput} onInput={(e) => {const target = e.target as HTMLInputElement; setEquipmentCostsInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ equipmentCostsInput }</p>}
+              {(changeItem && <input type='text' value={overheadsInput} onKeyDown={handleChangeItem} onInput={(e) => {const target = e.target as HTMLInputElement; setOverheadsInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ overheadsInput }</p>}
+              {(changeItem && <input type='text' value={estimatedProfitInput} onInput={(e) => {const target = e.target as HTMLInputElement; setEstimatedProfitInput(target.value)}}></input>) || <p onDoubleClick={() => {setChangeItem(true)}}>{ estimatedProfitInput }</p>}
           </div>
       </div>
 
