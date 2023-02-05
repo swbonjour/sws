@@ -11,7 +11,7 @@ import { setItemCreationValue } from 'store/slices/itemCreationSlice';
 
 import { EnviromentTableItemEmpty } from '../EnviromentTableItemEmpty/EnviromentTableItemEmpty';
 
-interface EnviromentTableItemProps {
+export interface EnviromentTableItemProps {
   rowName: string,
   mainCosts: number,
   equipmentCosts: number,
@@ -19,9 +19,10 @@ interface EnviromentTableItemProps {
   estimatedProfit: number,
   empty?: boolean,
   id?: number,
+  depth: number,
 }
 
-export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overheads, estimatedProfit, id }: EnviromentTableItemProps) => {
+export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overheads, estimatedProfit, id, depth }: EnviromentTableItemProps) => {
 
   const [hoverDelete, setHoverDelete] = useState(false);
 
@@ -29,11 +30,17 @@ export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overhe
   const dispatch = useDispatch();
 
   const handleDeleteString = async (e: React.MouseEvent<HTMLDivElement>) => {
+    if(changeItem === true) {
+      return;
+    }
     deleteString(id);
     dispatch(deleteStringData(id))
   }
 
   const handleCreateNewItem = (e: React.MouseEvent<HTMLDivElement>) => {
+    if(changeItem === true) {
+      return;
+    }
     dispatch(setItemCreationValue(id));
   }
 
@@ -48,18 +55,20 @@ export const EnviromentTableItem = ({ rowName, mainCosts, equipmentCosts, overhe
   const handleChangeItem = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === 'Enter') {
       if(rowNameInput !== rowName || mainCostsInput !== String(mainCosts) || equipmentCostsInput !== String(equipmentCosts) || overheadsInput !== String(overheads) || estimatedProfitInput !== String(estimatedProfit)) {
-        const data = await changeString(id, rowNameInput, Number(mainCostsInput), Number(equipmentCostsInput), Number(overheadsInput), Number(estimatedProfitInput))
+        await changeString(id, rowNameInput, Number(mainCostsInput), Number(equipmentCostsInput), Number(overheadsInput), Number(estimatedProfitInput))
         setChangeItem(false);
       }
     }
   }
 
-  console.log(rowNameInput);
+  const strings = useSelector((state: any) => state.stringReducer.value);
+  const stringsIdArr = strings.map((string: any) => string.id)
+  const nestingId = stringsIdArr.indexOf(itemCreationValue[1]);
   
   return (
     <div>
       <div className='enviroment_item'>
-          <div className='enviroment_item-titles'>
+          <div className='enviroment_item-titles' style={{paddingLeft: `${depth}rem`}}>
               {!hoverDelete && <div onMouseEnter={() => {setHoverDelete(true)}}><EnviromentItemSvg></EnviromentItemSvg></div>}
               {hoverDelete && <div className="enviroment_item-titles_hover" onMouseLeave={() => {setHoverDelete(false)}}>
                 <div onClick={handleCreateNewItem}><EnviromentItemSvg></EnviromentItemSvg></div>

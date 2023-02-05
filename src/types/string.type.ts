@@ -12,7 +12,8 @@ export interface StringInterface {
     rowName: string,
     salary: number,
     supportCosts: number,
-    total: number
+    total: number,
+    nest?: number,
 }
 
 export interface StringCreationInterface {
@@ -45,7 +46,7 @@ export interface StringCreationInterface {
             rowName: string,
             salary: number,
             supportCosts: number,
-            total: number
+            total: number,
         }
     ]
 }

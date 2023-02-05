@@ -18,11 +18,14 @@ export const EnviromentTableItemEmpty = () => {
   const strings = useSelector((state: any) => state.stringReducer.value)
   const dispatch = useDispatch();
 
+  const itemCreationValue = useSelector((state: any) => state.itemReducer.value)
+
   const handleCreateString = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === 'Enter') {
       if(rowNameInput !== '' && mainCostsInput !== '' && equipmentCostsInput !== '' && overheadsInput !== '' && estimatedProfitInput !== '') {
-        const data = await createString(rowNameInput, Number(mainCostsInput), Number(equipmentCostsInput), Number(overheadsInput), Number(estimatedProfitInput), null);
+        const data = await createString(rowNameInput, Number(mainCostsInput), Number(equipmentCostsInput), Number(overheadsInput), Number(estimatedProfitInput), itemCreationValue[1]);
         dispatch(setStringsData([...strings, data.current]))
+        console.log(strings);
         //@ts-ignore
         dispatch(setItemCreationValue(0))
         }
