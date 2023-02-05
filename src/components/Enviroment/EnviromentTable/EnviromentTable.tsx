@@ -48,7 +48,7 @@ export const EnviromentTable = () => {
       dispatch(setStringsData(response));
     }
     getData();
-  }, [strings])
+  }, [])
 
   return (
     <div className='enviroment_table'>
