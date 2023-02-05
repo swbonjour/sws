@@ -22,12 +22,6 @@ export interface RecursiveComponentProps {
 }
 
 const RecursiveComponent = ({ rowName, mainCosts, equipmentCosts, overheads, estimatedProfit, id, depth, children }: RecursiveComponentProps) => {
-  const resArr = [];
-  const resObject = {rowName, mainCosts, equipmentCosts, overheads, estimatedProfit, id, depth, children};
-  resArr.push(resObject);
-
-  console.log(resArr);
-
   return (
     <div>
       <EnviromentTableItem rowName={rowName} mainCosts={mainCosts} equipmentCosts={equipmentCosts} overheads={overheads} estimatedProfit={estimatedProfit} key={id} id={id} depth={depth}></EnviromentTableItem>
@@ -54,7 +48,7 @@ export const EnviromentTable = () => {
       dispatch(setStringsData(response));
     }
     getData();
-  }, [strings])
+  }, [])
 
   return (
     <div className='enviroment_table'>
